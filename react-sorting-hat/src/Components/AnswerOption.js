@@ -2,6 +2,20 @@ import React from "react";
 import PropTypes from 'prop-types';
 
 const AnswerOption = (props) => {
+
+    const renderAnswerOptions = (key) => {
+        return (
+            <AnswerOption
+            key={key.content}
+            answerContent={key.content}
+            answerType={key}
+            answer={props.answer}
+            questionId={props.questionId}
+            onAnswerSelected={props.onAnswerSelected}
+            ></AnswerOption>
+        )
+    }
+
     return(
         <li>
             <input
