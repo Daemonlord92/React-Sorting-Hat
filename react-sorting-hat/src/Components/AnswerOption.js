@@ -1,33 +1,22 @@
-import React from "react";
+import React from 'react';
 import PropTypes from 'prop-types';
 
-const AnswerOption = (props) => {
-
-    const renderAnswerOptions = (key) => {
-        return (
-            <AnswerOption
-            key={key.content}
-            answerContent={key.content}
-            answerType={key}
-            answer={props.answer}
-            questionId={props.questionId}
-            onAnswerSelected={props.onAnswerSelected}
-            ></AnswerOption>
-        )
-    }
-
-    return(
-        <li>
+function AnswerOption(props) {
+    return (
+        <li className="answerOption">
             <input
                 type="radio"
-                name='radioGroup'
+                className="radioCustomButton"
+                name="radioGroup"
                 checked={props.answerType === props.answer}
                 id={props.answerType}
                 value={props.answerType}
                 disabled={props.answer}
                 onChange={props.onAnswerSelected}
             />
-            <label htmlFor={props.answerTypes}>{props.answerContent}</label>
+            <label className="radioCustomLabel" htmlFor={props.answerType}>
+                {props.answerContent}
+            </label>
         </li>
     );
 }

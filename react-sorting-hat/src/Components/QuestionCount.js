@@ -1,9 +1,9 @@
-import React from "react";
+import React from 'react';
 import PropTypes from 'prop-types';
 
-const QuestionCount = (props) => {
+function QuestionCount(props) {
     return (
-        <div>
+        <div className="questionCount">
             Question <span>{props.counter}</span> of <span>{props.total}</span>
         </div>
     );

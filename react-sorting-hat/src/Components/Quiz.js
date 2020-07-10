@@ -1,25 +1,38 @@
-import React from "react";
+import React from 'react';
 import PropTypes from 'prop-types';
-import Question from "./Question";
-import QuestionCount from "./QuestionCount";
-import AnswerOption from "./AnswerOption";
+import Question from '../Components/Question';
+import QuestionCount from '../Components/QuestionCount';
+import AnswerOption from '../Components/AnswerOption';
 
-const Quiz = (props) => {
+function Quiz(props) {
+    function renderAnswerOptions(key) {
+        return (
+            <AnswerOption
+                key={key.content}
+                answerContent={key.content}
+                answerType={key.type}
+                answer={props.answer}
+                questionId={props.questionId}
+                onAnswerSelected={props.onAnswerSelected}
+            />
+        );
+    }
+
     return (
-        <div>
-            <QuestionCount counter={props.questionId} total={props.questionTotal}></QuestionCount>
-            <Question content={props.question}></Question>
-            <ul>
-                {props.answerOptions.map(renderAnswerOptions)}
-            </ul>
-        </div>
+            <div key={props.questionId}>
+                <QuestionCount counter={props.questionId} total={props.questionTotal} />
+                <Question content={props.question} />
+                <ul className="answerOptions">
+                    {props.answerOptions.map(renderAnswerOptions)}
+                </ul>
+            </div>
+
     );
 }
 
 Quiz.propTypes = {
     answer: PropTypes.string.isRequired,
-    answerOptions: PropTypes.string.isRequired,
-    counter: PropTypes.number.isRequired,
+    answerOptions: PropTypes.array.isRequired,
     question: PropTypes.string.isRequired,
     questionId: PropTypes.number.isRequired,
     questionTotal: PropTypes.number.isRequired,
